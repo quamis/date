@@ -1,0 +1,48 @@
+body {
+	font-family: Verdana;
+}
+
+div.stats{
+	position: absolute;
+    text-align: right;
+    top: 0%;
+	width: 95%;
+}
+
+div.lastDate {
+    position: absolute;
+    text-align: center;
+    top: 30%;
+	width: 95%;
+}
+	
+div.lastDate > div.date{
+	text-align: center;
+	font-size: 1cm;
+	color: #888;
+}
+
+div.lastDate > div.hour{
+	text-align: center;
+	font-size: 1.5cm;
+	color: #444;
+	font-weight: bold;
+}
+
+div.lastDate > div.hour > span.dot{
+	color: #ccc;
+	position: relative;
+	font-weight: normal;
+	top: -0.05em;
+}
+div.lastDate > div.hour > span.dot._mark{
+	color: #888;
+}
+
+div.lastDate > div.hour > span.second{
+	color: #ccc;
+	font-weight: normal;
+}
+div.lastDate > div.hour > span.second.slow{
+	color: #e8e8e8;
+}
