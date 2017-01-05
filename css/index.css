@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Nova+Mono');
+
 body {
 	font-family: Verdana;
 }
@@ -11,20 +13,27 @@ div.stats{
 
 div.lastDate {
     position: absolute;
-    text-align: center;
-    top: 30%;
-	width: 95%;
+    top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	font-family: 'Nova Mono', monospace;
+	
+	display: flex;
+	flex-direction: column;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
 }
 	
 div.lastDate > div.date{
-	text-align: center;
-	font-size: 1cm;
+	font-size: 5vw;
 	color: #888;
+	margin-bottom: -5vw;
 }
 
 div.lastDate > div.hour{
-	text-align: center;
-	font-size: 1.5cm;
+	font-size: 18vw; 
 	color: #444;
 	font-weight: bold;
 }
