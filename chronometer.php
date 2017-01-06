@@ -1,10 +1,3 @@
-<?php
-ini_set('display_errors', '1');
-error_reporting(-1);
-// date_default_timezone_set('UTC');
-date_default_timezone_set('Europe/Bucharest');
-
-?>
 <!doctype html>
 <html>
 <head>
@@ -40,16 +33,25 @@ date_default_timezone_set('Europe/Bucharest');
 		$().ready(function() {
 			chronometer = new _chronometer();
 			chronometer.attach($('div.screen'));
-			chronometer.mute(true).showHundreds(false);
+			chronometer.mute(false).showHundreds(false);
+			
+			$('div.screen').on('chronometer:tick:1s', function(evt, extraParameter) {
+                            if (Math.ceil(extraParameter['diff'])%5 ==0 ) {
+                                extraParameter.source.sounds.volume(1.00).play('tick');
+                            }
+                            else {
+                                extraParameter.source.sounds.volume(0.10).play('tick');
+                            }
+                        });
 			
 			$('div.screen').on('chronometer:tick:30s', function(evt, extraParameter) {
 				if (Math.ceil(extraParameter['diff'])%60 ==0 ) {
-					extraParameter.source.sounds['tick'].volume(1).play();
+					extraParameter.source.sounds.volume(1).play('tick');
 				}
 				else {
-					extraParameter.source.sounds['tick'].volume(0.33).play();
+					extraParameter.source.sounds.volume(0.33).play('tick');
 				}
-			})
+			});
 			
 			$('div.buttons button.start').click(function(){
 				chronometer.start();
