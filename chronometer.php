@@ -1,3 +1,9 @@
+<?php
+ini_set('display_errors', '1');
+error_reporting(-1);
+// date_default_timezone_set('UTC');
+date_default_timezone_set('Europe/Bucharest');
+?>
 <!doctype html>
 <html>
 <head>
@@ -33,25 +39,56 @@
 		$().ready(function() {
 			chronometer = new _chronometer();
 			chronometer.attach($('div.screen'));
-			chronometer.mute(false).showHundreds(false);
 			
-			$('div.screen').on('chronometer:tick:1s', function(evt, extraParameter) {
-                            if (Math.ceil(extraParameter['diff'])%5 ==0 ) {
-                                extraParameter.source.sounds.volume(1.00).play('tick');
-                            }
-                            else {
-                                extraParameter.source.sounds.volume(0.10).play('tick');
-                            }
-                        });
 			
-			$('div.screen').on('chronometer:tick:30s', function(evt, extraParameter) {
-				if (Math.ceil(extraParameter['diff'])%60 ==0 ) {
-					extraParameter.source.sounds.volume(1).play('tick');
-				}
-				else {
-					extraParameter.source.sounds.volume(0.33).play('tick');
-				}
-			});
+			switch (mode) {
+				case 'workout:5m':
+					chronometer.mute(false).showHundreds(false);
+					$('div.screen').on('chronometer:tick:5s', function(evt, extraParameter) {
+						var alrm1 = 5*60;
+						var alrm2 = 7*60;
+						if (extraParameter['diff']>alrm2) {
+							extraParameter.source.sounds.volume(1.00).play('alarm2');
+						}
+						else if (extraParameter['diff']>alrm1) {
+							extraParameter.source.sounds.volume(Math.min(10*(extraParameter['diff']-alrm1)/60, 1.00)).play('alarm1');
+						}
+					});
+				break;
+				
+				case 'scrum:15m':
+					chronometer.mute(false).showHundreds(false);
+					var alrm1 = 1*60;
+					$('div.screen').on('chronometer:tick:1s', function(evt, extraParameter) {
+						if (extraParameter['diff']>alrm1) {
+							extraParameter.source.sounds.volume(Math.min(1*(extraParameter['diff']-alrm1)/60, 1.00)).play('tick');
+						}
+					});
+				break;
+				
+				default:
+					chronometer.mute(true).showHundreds(false);
+					
+					$('div.screen').on('chronometer:tick:1s', function(evt, extraParameter) {
+									if (Math.ceil(extraParameter['diff'])%5 ==0 ) {
+										extraParameter.source.sounds.volume(1.00).play('tick');
+									}
+									else {
+										extraParameter.source.sounds.volume(0.10).play('tick');
+									}
+								});
+					
+					$('div.screen').on('chronometer:tick:30s', function(evt, extraParameter) {
+						if (Math.ceil(extraParameter['diff'])%60 ==0 ) {
+							extraParameter.source.sounds.volume(1).play('tick');
+						}
+						else {
+							extraParameter.source.sounds.volume(0.33).play('tick');
+						}
+					});
+			}
+			
+			
 			
 			$('div.buttons button.start').click(function(){
 				chronometer.start();
@@ -70,8 +107,6 @@
 		using sounds from freesounds
 			42136__fauxpress__old-scots-clock-ring-the-hour-five-o-clock.wav
 			174721__drminky__watch-tick
-			
-		
 		*/
 		
 		
@@ -88,6 +123,8 @@
 		document.addEventListener('click', enableNoSleep, false);
 		
 		noSleep = new NoSleep();
+		
+		mode = '<?=(isset($_GET['mode'])?$_GET['mode']:'default')?>';
 	</script>
 
 </body>

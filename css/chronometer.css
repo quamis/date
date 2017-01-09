@@ -49,7 +49,7 @@ div.screen {
     align-items: center; /* align vertical */
 	
 	background-color: #eee;
-	transition: background-color 5s ease-in;
+	transition: background-color 1s ease-in;
 }
 
 div.screen.active {
