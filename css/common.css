@@ -157,7 +157,7 @@ div.screen >div.progress >div.mark {
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	width: 1%;
+	width: 0.5%;
 }
 
 div.screen >div.progress >div.progressbar.m25p { background-color: #FF9893; }

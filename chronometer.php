@@ -62,10 +62,10 @@ date_default_timezone_set('Europe/Bucharest');
 			
 			switch (mode) {
 				case 'workout:5m':
-					chronometer.mute(false).showHundreds(false).showRemaining(0.25*60);
+					chronometer.mute(false).showHundreds(false).showRemaining(5*60);
 					$('div.screen').on('chronometer:tick:5s', function(evt, extraParameter) {
-						var alrm1 = 0.25*60;	// TODO: 5 min
-						var alrm2 = 2*60;	// TODO: 7 min
+						var alrm1 = 5*60;	// TODO: 5 min
+						var alrm2 = 6*60;	// TODO: 7 min
 						if (extraParameter['diff']>alrm2) {
 							extraParameter.source.sounds.volume(1.00).play('alarm2');
 						}
@@ -84,8 +84,8 @@ date_default_timezone_set('Europe/Bucharest');
 				break;
 				
 				case 'scrum:15m':
-					chronometer.mute(false).showHundreds(false).showRemaining(1*60);
-					var alrm1 = 1*60; 	// TODO: 15 min
+					chronometer.mute(false).showHundreds(false).showRemaining(15*60);
+					var alrm1 = 15*60; 	// TODO: 15 min
 					$('div.screen').on('chronometer:tick:1s', function(evt, extraParameter) {
 						if (extraParameter['diff']>alrm1) {
 							extraParameter.source.sounds.volume(Math.min(1*(extraParameter['diff']-alrm1)/60, 1.00)).play('tick');
