@@ -34,6 +34,14 @@ div.buttons >button.stop {
 	border-color: #eeaa44;
 }
 
+div.buttons >button.menu {	/* @see http://paletton.com/#uid=50X0V0knw-pdyOAj1GAsKvFvgp6 */
+	background-color: #FFCC67;
+	color: #444;
+	border-color: #FFC144;
+	float: left;
+	border-radius: 0 2vw 0 0;
+}
+
 div.info {
     position: absolute;
 	z-index: 1900;
@@ -125,3 +133,45 @@ div.screen >div.time >span.second + span.dot{
 div.screen.has-seconds >div.time >span.second { color: #aaa; }
 div.screen.has-minutes >div.time >span.minute { color: #888; }
 div.screen.has-hours >div.time >span.hours       { color: #888; }
+
+
+
+
+div.buttons >ul.menu.invisible {
+	display: none;
+}
+div.buttons >ul.menu {	/* @see http://paletton.com/#uid=50X0V0knw-pdyOAj1GAsKvFvgp6 */
+	position: absolute;
+    bottom: 5.5vw;
+	display: block;
+	
+	background-color: #FFCC67;
+	color: #444;
+	border-color: #C88705;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+	box-shadow: 0.5vw -0.5vw 1vw #C88705;
+	font-family: monospace;
+}
+div.buttons >ul.menu >li {
+	list-style-type: none;
+	border-top: 1px solid #C88705;
+}
+div.buttons >ul.menu >li >a {
+	color: #444;
+	padding: 0.1em 1em 0.1em 1em;
+	font-size: 3vw;
+	text-decoration: none;
+	display: block;
+}
+div.buttons >ul.menu >li >a:hover {
+	background-color: #C88705;
+}
+
+div.buttons >ul.menu >li.chronometer >a {
+	color: #7A0600;
+}
+div.buttons >ul.menu >li.time>a {
+	color: #444;
+}

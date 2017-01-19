@@ -12,6 +12,18 @@
 </head>
 
 <body>
+	<div class='buttons'>
+		<button class='menu' onClick="$('ul.menu').toggleClass('invisible');">menu</button>
+		
+		<ul class="menu invisible">
+			<li class="item chronometer"><a href="chronometer.php">chronometer:default</a></li>
+			<li class="item chronometer"><a href="chronometer.php?mode=workout:5m">chronometer:workout:5m</a></li>
+			<li class="item chronometer"><a href="chronometer.php?mode=scrum:15m">chronometer:scrum:15m</a></li>
+			<li class="item time"><a href="local.php">localtime</a></li>
+			<li class="item time"><a href="remote.php">servertime</a></li>
+		</ul>
+	</div>
+	
 	<div class='info'>
 		<div class="offset"><span class="label">c/s offset </span><span class="value">?</span><span class='um'>s</span></div>
 		<div class="resync"><span class="value">?</span><span class="label">s since resync</span></div>

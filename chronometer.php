@@ -19,8 +19,18 @@ date_default_timezone_set('Europe/Bucharest');
 
 <body>
 	<div class='buttons'>
+		<button class='menu' onClick="$('ul.menu').toggleClass('invisible');">menu</button>
+		
 		<button class='start' onClick="">Start</button>
 		<button class='stop' style="display: none;">Stop</button>
+		
+		<ul class="menu invisible">
+			<li class="item chronometer"><a href="chronometer.php">chronometer:default</a></li>
+			<li class="item chronometer"><a href="chronometer.php?mode=workout:5m">chronometer:workout:5m</a></li>
+			<li class="item chronometer"><a href="chronometer.php?mode=scrum:15m">chronometer:scrum:15m</a></li>
+			<li class="item time"><a href="local.php">localtime</a></li>
+			<li class="item time"><a href="remote.php">servertime</a></li>
+		</ul>
 	</div>
 	
 	<div class='screen'>
