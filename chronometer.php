@@ -36,6 +36,14 @@ date_default_timezone_set('Europe/Bucharest');
 	
 	<div class='screen'>
 		<div class='time'><span class='hour'>0</span><span class='dot'>:</span><span class='minute'>00</span><span class='dot'>:</span><span class='second'>00</span><span class='dot'>.</span><span class='hundreds'>00</span></div>
+		<div class='progress'>
+			<div class='mark m25p'></div>
+			<div class='mark m50p'></div>
+			<div class='mark m75p'></div>
+			<div class='mark m90p'></div>
+			
+			<div class='progressbar'></div>
+		</div>
 	</div>
 	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
@@ -54,9 +62,9 @@ date_default_timezone_set('Europe/Bucharest');
 			
 			switch (mode) {
 				case 'workout:5m':
-					chronometer.mute(false).showHundreds(false).showRemaining(1*60);
+					chronometer.mute(false).showHundreds(false).showRemaining(0.25*60);
 					$('div.screen').on('chronometer:tick:5s', function(evt, extraParameter) {
-						var alrm1 = 1*60;	// TODO: 5 min
+						var alrm1 = 0.25*60;	// TODO: 5 min
 						var alrm2 = 2*60;	// TODO: 7 min
 						if (extraParameter['diff']>alrm2) {
 							extraParameter.source.sounds.volume(1.00).play('alarm2');

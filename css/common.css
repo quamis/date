@@ -139,6 +139,40 @@ div.screen.has-hours >div.time >span.hours       { color: #888; }
 
 
 
+div.screen >div.progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	border-bottom: 1px solid #C80F05;
+}
+div.screen >div.progress >div.progressbar {
+	background-color: #C80F05;
+	width: 0%;
+	height: 10vw;
+	transition: width linear 1s, background-color ease-in 2s;
+	opacity: 0.5;
+}
+div.screen >div.progress >div.mark { 
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 1%;
+}
+
+div.screen >div.progress >div.progressbar.m25p { background-color: #FF9893; }
+div.screen >div.progress >div.mark.m25p { left: 25%; background-color: #FF9893; }
+
+div.screen >div.progress >div.progressbar.m50p { background-color: #FF6F67; }
+div.screen >div.progress >div.mark.m50p { left: 50%; background-color: #FF6F67; }
+
+div.screen >div.progress >div.progressbar.m75p { background-color: #FC251A; }
+div.screen >div.progress >div.mark.m75p { left: 75%; background-color: #FC251A; }
+
+div.screen >div.progress >div.progressbar.m90p { background-color: #C80F05; }
+div.screen >div.progress >div.mark.m90p { left: 90%; background-color: #C80F05; }
+
+
 
 div.buttons >ul.menu.invisible {
 	display: none;
