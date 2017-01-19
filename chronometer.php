@@ -27,6 +27,7 @@ date_default_timezone_set('Europe/Bucharest');
 		<ul class="menu invisible">
 			<li class="item chronometer"><a href="chronometer.php">chronometer:default</a></li>
 			<li class="item chronometer"><a href="chronometer.php?mode=workout:5m">chronometer:workout:5m</a></li>
+			<li class="item chronometer"><a href="chronometer.php?mode=workout:5m">chronometer:switch:1m</a></li>
 			<li class="item chronometer"><a href="chronometer.php?mode=scrum:15m">chronometer:scrum:15m</a></li>
 			<li class="item time"><a href="local.php">localtime</a></li>
 			<li class="item time"><a href="remote.php">servertime</a></li>
@@ -53,10 +54,10 @@ date_default_timezone_set('Europe/Bucharest');
 			
 			switch (mode) {
 				case 'workout:5m':
-					chronometer.mute(false).showHundreds(false);
+					chronometer.mute(false).showHundreds(false).showRemaining(1*60);
 					$('div.screen').on('chronometer:tick:5s', function(evt, extraParameter) {
-						var alrm1 = 5*60;
-						var alrm2 = 7*60;
+						var alrm1 = 1*60;	// TODO: 5 min
+						var alrm2 = 2*60;	// TODO: 7 min
 						if (extraParameter['diff']>alrm2) {
 							extraParameter.source.sounds.volume(1.00).play('alarm2');
 						}
@@ -66,9 +67,17 @@ date_default_timezone_set('Europe/Bucharest');
 					});
 				break;
 				
+				case 'switch:1m':
+					$('div.screen').on('chronometer:tick:5s', function(evt, extraParameter) {
+						if (Math.ceil(extraParameter['diff'])%60==0 ) {
+							extraParameter.source.sounds.volume(1.00).play('alarm1');
+						}
+					});
+				break;
+				
 				case 'scrum:15m':
-					chronometer.mute(false).showHundreds(false);
-					var alrm1 = 1*60;
+					chronometer.mute(false).showHundreds(false).showRemaining(1*60);
+					var alrm1 = 1*60; 	// TODO: 15 min
 					$('div.screen').on('chronometer:tick:1s', function(evt, extraParameter) {
 						if (extraParameter['diff']>alrm1) {
 							extraParameter.source.sounds.volume(Math.min(1*(extraParameter['diff']-alrm1)/60, 1.00)).play('tick');
@@ -76,28 +85,11 @@ date_default_timezone_set('Europe/Bucharest');
 					});
 				break;
 				
+				
 				default:
 					chronometer.mute(true).showHundreds(false);
-					
-					$('div.screen').on('chronometer:tick:1s', function(evt, extraParameter) {
-									if (Math.ceil(extraParameter['diff'])%5 ==0 ) {
-										extraParameter.source.sounds.volume(1.00).play('tick');
-									}
-									else {
-										extraParameter.source.sounds.volume(0.10).play('tick');
-									}
-								});
-					
-					$('div.screen').on('chronometer:tick:30s', function(evt, extraParameter) {
-						if (Math.ceil(extraParameter['diff'])%60 ==0 ) {
-							extraParameter.source.sounds.volume(1).play('tick');
-						}
-						else {
-							extraParameter.source.sounds.volume(0.33).play('tick');
-						}
-					});
+				break;
 			}
-			
 			
 			
 			$('div.buttons button.start').click(function(){

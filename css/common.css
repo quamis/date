@@ -76,6 +76,9 @@ div.screen {
 div.screen.active {
 	background-color: #fff;
 }
+div.screen.warning {
+	background-color: #ffee88;
+}
 
 
 
